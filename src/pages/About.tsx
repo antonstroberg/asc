@@ -39,7 +39,7 @@ const About = () => {
       <section className="section-container">
         <div className="max-w-3xl">
           <h1 className="text-4xl md:text-5xl font-bold mb-6">
-            Hi, I'm Andreas Ströberg
+            Hi, I'm Anton Ströberg
           </h1>
           <p className="text-xl text-muted-foreground mb-8">
             With over 20 years in software development, product leadership, and business development, 
@@ -63,8 +63,8 @@ const About = () => {
             <p>
               I founded my first tech startup in the early 2000s, learning firsthand the challenges 
               of building products that users love while maintaining technical excellence. Since then, 
-              I've helped dozens of companies—from pre-seed startups to established enterprises—navigate 
-              their technical journeys.
+              I've started and scaled multiple SaaS products, gaining deep insights into what it takes to
+              succeed in competitive markets.
             </p>
             
             <p>

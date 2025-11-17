@@ -31,10 +31,10 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          <NavLink to="/" className="flex items-center gap-3 text-foreground">
-            <Logo variant="text" />
-            <span className="text-sm font-medium hidden sm:inline">Stroberg Consulting</span>
-          </NavLink>
+            <NavLink to="/" className="flex items-center justify-center gap-3 text-foreground">
+              <img src="/src/assets/logo_svg.svg" alt="Logo" className="h-12 w-12" />
+              <span className="text-base font-small hidden sm:inline">Anton Stroberg Consulting</span>
+            </NavLink>
 
           {/* Desktop Navigation */}
           <nav className="hidden md:flex items-center gap-8">
@@ -49,7 +49,7 @@ const Header = () => {
               </NavLink>
             ))}
             <Button asChild size="sm" className="ml-4">
-              <NavLink to="/contact">Work with Andreas</NavLink>
+              <NavLink to="/contact">Work with ASC</NavLink>
             </Button>
           </nav>
 
@@ -80,7 +80,7 @@ const Header = () => {
               ))}
               <Button asChild className="mt-2">
                 <NavLink to="/contact" onClick={() => setIsMobileMenuOpen(false)}>
-                  Work with Andreas
+                  Work with ASC
                 </NavLink>
               </Button>
             </div>

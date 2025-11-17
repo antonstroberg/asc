@@ -18,7 +18,7 @@ const Services = () => {
       title: "Software Development & Architecture",
       description: "Design and build scalable, maintainable systems using modern technologies and best practices.",
       details: [
-        "Full-stack development (React, Node.js, Python)",
+        "Full-stack development (GO, Python, JavaScript/TypeScript)",
         "Microservices architecture",
         "Cloud infrastructure (AWS, Azure, GCP)",
         "API design and integration",

@@ -2,7 +2,6 @@ import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { NavLink } from "@/components/NavLink";
 import { ArrowRight, Code2, Brain, Lightbulb, Rocket } from "lucide-react";
-import heroImage from "@/assets/hero-abstract.jpg";
 
 const Home = () => {
   const services = [
@@ -32,29 +31,24 @@ const Home = () => {
     <div className="min-h-screen">
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-        <div 
-          className="absolute inset-0 z-0"
-          style={{
-            backgroundImage: `url(${heroImage})`,
-            backgroundSize: 'cover',
-            backgroundPosition: 'center',
-          }}
-        >
-          <div className="absolute inset-0 bg-background/70 backdrop-blur-sm" />
+        <div className="hero-ambient">
+          <div className="hero-ambient-overlay" />
         </div>
         
-        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center">
+        <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
+
           <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
-            Building Better Products.<br />Faster.
+            Better : Cooler : Faster
           </h1>
+          
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto text-balance">
             Expert consulting in software development, AI integration, and technical leadership for modern tech companies.
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
               <NavLink to="/contact">
-                Start a Conversation
-                <ArrowRight className="ml-2 w-4 h-4" />
+          Start a Conversation
+          <ArrowRight className="ml-2 w-4 h-4" />
               </NavLink>
             </Button>
             <Button asChild variant="outline" size="lg">
