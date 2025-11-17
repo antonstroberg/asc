@@ -1,3 +1,9 @@
 name = "strobergconsulting"
+main = "worker.ts"
 compatibility_date = "2025-11-17"
-pages_build_output_dir = "dist"
+
+[build]
+command = "npm run build"
+
+[assets]
+directory = "dist"
