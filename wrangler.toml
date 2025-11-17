@@ -7,3 +7,7 @@ command = "npm run build"
 
 [assets]
 directory = "dist"
+
+routes = [
+  { pattern = "strobergconsulting.se/*" },
+]
