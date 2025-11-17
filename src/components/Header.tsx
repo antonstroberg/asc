@@ -32,7 +32,7 @@ const Header = () => {
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
             <NavLink to="/" className="flex items-center justify-center gap-3 text-foreground">
-              <img src="/src/assets/logo_svg.svg" alt="Logo" className="h-12 w-12" />
+              <img src="/logo_svg.svg" alt="Anton Ströberg Consulting" className="h-12 w-12" />
               <span className="text-base font-small hidden sm:inline">Anton Stroberg Consulting</span>
             </NavLink>
 
