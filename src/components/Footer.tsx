@@ -27,6 +27,9 @@ const Footer = () => {
               <NavLink to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
                 Contact
               </NavLink>
+              <NavLink to="/skip-the-seed" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Skip the Seed
+              </NavLink>
             </nav>
           </div>
           
@@ -35,6 +38,15 @@ const Footer = () => {
             <div className="text-sm text-muted-foreground space-y-2">
               <p>Based in Stockholm, Sweden</p>
               <p>Available for remote and on-site consulting</p>
+              <a
+                href="https://www.linkedin.com/in/andreasstroberg/"
+                target="_blank"
+                rel="noreferrer"
+                className="flex items-center gap-2 text-foreground hover:text-accent transition-colors"
+              >
+                <img src="/linkedin.svg" alt="" className="h-4 w-4" aria-hidden="true" />
+                <span>LinkedIn</span>
+              </a>
             </div>
           </div>
         </div>

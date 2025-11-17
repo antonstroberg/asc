@@ -21,6 +21,7 @@ const Header = () => {
     { label: "Services", path: "/services" },
     { label: "About", path: "/about" },
     { label: "Contact", path: "/contact" },
+    { label: "Skip the Seed", path: "/skip-the-seed" },
   ];
 
   return (

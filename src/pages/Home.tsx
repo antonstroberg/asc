@@ -37,12 +37,12 @@ const Home = () => {
         
         <div className="relative z-10 max-w-4xl mx-auto px-6 text-center flex flex-col items-center">
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
-            Better : Cooler : Faster
-          </h1>
+            <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance">
+            Better → Smarter → Faster
+            </h1>
           
           <p className="text-xl md:text-2xl text-muted-foreground mb-8 max-w-2xl mx-auto text-balance">
-            Expert consulting in software development, AI integration, and technical leadership for modern tech companies.
+            Full 360° development with next-gen tools - turning ideas into solid architecture and finished products
           </p>
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <Button asChild size="lg">
@@ -63,7 +63,7 @@ const Home = () => {
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-4xl font-bold mb-4">Core Expertise</h2>
           <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-            20+ years of experience building SaaS products, leading engineering teams, and scaling digital platforms.
+            20+ years of building SaaS products and leading engineering teams, covering the full product lifecycle from ideation to launch and beyond.
           </p>
         </div>
 
