@@ -1,0 +1,50 @@
+import { NavLink } from "@/components/NavLink";
+
+const Footer = () => {
+  return (
+    <footer className="border-t border-border bg-muted/30">
+      <div className="max-w-7xl mx-auto px-6 py-12">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
+          <div>
+            <h3 className="font-semibold text-foreground mb-4">Stroberg Consulting AB</h3>
+            <p className="text-sm text-muted-foreground">
+              Expert consulting in IT, AI, and product development for modern tech companies.
+            </p>
+          </div>
+          
+          <div>
+            <h4 className="font-medium text-foreground mb-4">Navigation</h4>
+            <nav className="flex flex-col gap-2">
+              <NavLink to="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Home
+              </NavLink>
+              <NavLink to="/services" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Services
+              </NavLink>
+              <NavLink to="/about" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                About
+              </NavLink>
+              <NavLink to="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                Contact
+              </NavLink>
+            </nav>
+          </div>
+          
+          <div>
+            <h4 className="font-medium text-foreground mb-4">Contact</h4>
+            <div className="text-sm text-muted-foreground space-y-2">
+              <p>Based in Stockholm, Sweden</p>
+              <p>Available for remote and on-site consulting</p>
+            </div>
+          </div>
+        </div>
+        
+        <div className="mt-12 pt-8 border-t border-border text-center text-sm text-muted-foreground">
+          <p>© {new Date().getFullYear()} Stroberg Consulting AB. All rights reserved.</p>
+        </div>
+      </div>
+    </footer>
+  );
+};
+
+export default Footer;
