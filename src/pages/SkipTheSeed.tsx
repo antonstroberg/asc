@@ -32,22 +32,21 @@ const productShowcase = [
 
 const SkipTheSeed = () => {
   return (
-    <div className="min-h-screen pt-20">
-      <section className="section-container text-center">
+    <div className="min-h-screen">
+      <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+        <div className="hero-ambient hero-ambient--rainbow">
+          <div className="hero-ambient-overlay hero-ambient-overlay--rainbow" />
+        </div>
+        <div className="relative z-10 max-w-3xl mx-auto px-6 text-center space-y-4">
 
-        <h1 className="text-4xl md:text-5xl font-bold mb-4">Skip the Seed</h1>
-        <p className="text-xl text-muted-foreground">
-          Build the product first. Raise money later. Or not at all.
-        </p>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance text-white">Skip → The → Seed</h1>
+          <p className="text-xl text-white/80">
+            Build the product first. Raise money later. Or not at all.
+          </p>
+        </div>
       </section>
 
-      <section className="section-container max-w-3xl mx-auto">
-        <p className="text-lg text-muted-foreground">
-          We don’t do pitch decks, we do working software. Stroberg Consulting AB uses this model for our
-          own ventures, so every partner engagement mirrors what we already demand of ourselves when we
-          fund, design, and ship new products.
-        </p>
-      </section>
+
 
       <section className="section-container bg-muted/30">
         <div className="max-w-4xl mx-auto space-y-4">

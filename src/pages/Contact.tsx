@@ -14,12 +14,33 @@ const Contact = () => {
     company: "",
     message: "",
   });
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    // In a real implementation, this would send to a backend
-    toast.success("Message sent! I'll get back to you within 24 hours.");
-    setFormData({ name: "", email: "", company: "", message: "" });
+    setIsSubmitting(true);
+    try {
+      const response = await fetch("/api/contact", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify(formData),
+      });
+
+      if (!response.ok) {
+        const data = await response.json().catch(() => null);
+        throw new Error(data?.error ?? "Unable to send message right now.");
+      }
+
+      toast.success("Message sent! I'll get back to you within 24 hours.");
+      setFormData({ name: "", email: "", company: "", message: "" });
+    } catch (error) {
+      console.error(error);
+      toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   const handleChange = (
@@ -108,8 +129,8 @@ const Contact = () => {
                   />
                 </div>
 
-                <Button type="submit" size="lg" className="w-full">
-                  Send Message
+                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                  {isSubmitting ? "Sending..." : "Send Message"}
                 </Button>
               </form>
             </CardContent>
