@@ -2,6 +2,7 @@ import { useState, useEffect } from "react";
 import { NavLink } from "@/components/NavLink";
 import { Button } from "@/components/ui/button";
 import { Menu, X } from "lucide-react";
+import Logo from "@/components/Logo";
 
 const Header = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -30,8 +31,9 @@ const Header = () => {
     >
       <div className="max-w-7xl mx-auto px-6">
         <div className="flex items-center justify-between h-20">
-          <NavLink to="/" className="text-xl font-semibold text-foreground">
-            Stroberg Consulting
+          <NavLink to="/" className="flex items-center gap-3 text-foreground">
+            <Logo variant="text" />
+            <span className="text-sm font-medium hidden sm:inline">Stroberg Consulting</span>
           </NavLink>
 
           {/* Desktop Navigation */}
