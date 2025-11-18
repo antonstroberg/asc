@@ -2,12 +2,21 @@ name = "strobergconsulting"
 main = "worker.ts"
 compatibility_date = "2025-11-17"
 
+[env.dev]
+
+[env.production]
+
 [build]
 command = "npm run build"
 
 [assets]
+binding = "ASSETS"
 directory = "dist"
 
-routes = [
-  { pattern = "strobergconsulting.se/*" },
-]
+routes = [{ pattern = "strobergconsulting.se/*" }]
+
+[observability.logs]
+enabled = true
+head_sampling_rate = 1
+invocation_logs = true
+persist = true

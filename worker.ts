@@ -41,6 +41,10 @@ async function handleContact(request: Request, env: Env) {
   };
 
   if (env.MAILERLITE_API_TOKEN) {
+    console.log("[contact] sending to MailerLite", {
+      hasGroup: Boolean(env.MAILERLITE_GROUP_ID),
+      email,
+    });
     const subscriberPayload: Record<string, unknown> = {
       email,
       fields: {
@@ -62,6 +66,8 @@ async function handleContact(request: Request, env: Env) {
       body: JSON.stringify(subscriberPayload),
     });
 
+    console.log("[contact] MailerLite response status", mailerliteResponse.status);
+
     if (!mailerliteResponse.ok && mailerliteResponse.status !== 409) {
       const errorBody = await mailerliteResponse.text();
       console.error("MailerLite error:", mailerliteResponse.status, errorBody);
@@ -73,6 +79,7 @@ async function handleContact(request: Request, env: Env) {
   }
 
   if (env.CONTACT_WEBHOOK_URL) {
+    console.log("[contact] forwarding payload to webhook");
     await fetch(env.CONTACT_WEBHOOK_URL, {
       method: "POST",
       headers: { "content-type": "application/json" },
