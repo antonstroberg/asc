@@ -2,6 +2,29 @@ var __defProp = Object.defineProperty;
 var __name = (target, value) => __defProp(target, "name", { value, configurable: true });
 
 // worker.ts
+async function forwardToWebhook(url, payload) {
+  const isSlack = url.includes("hooks.slack.com");
+  if (isSlack) {
+    const text = [
+      `*New message from ${payload.name ?? "Unknown"}*`,
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.company ? `Company: ${payload.company}` : "",
+      payload.message ? `Message:
+>${String(payload.message).replace(/\n/g, "\n>")}` : ""
+    ].filter(Boolean).join("\n");
+    return fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ text })
+    });
+  }
+  return fetch(url, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload)
+  });
+}
+__name(forwardToWebhook, "forwardToWebhook");
 async function handleContact(request, env) {
   if (!request.headers.get("content-type")?.includes("application/json")) {
     return new Response(JSON.stringify({ error: "Expected JSON body" }), {
@@ -34,6 +57,10 @@ async function handleContact(request, env) {
     userAgent: request.headers.get("user-agent") ?? ""
   };
   if (env.MAILERLITE_API_TOKEN) {
+    console.log("[contact] sending to MailerLite", {
+      hasGroup: Boolean(env.MAILERLITE_GROUP_ID),
+      email
+    });
     const subscriberPayload = {
       email,
       fields: {
@@ -53,6 +80,7 @@ async function handleContact(request, env) {
       },
       body: JSON.stringify(subscriberPayload)
     });
+    console.log("[contact] MailerLite response status", mailerliteResponse.status);
     if (!mailerliteResponse.ok && mailerliteResponse.status !== 409) {
       const errorBody = await mailerliteResponse.text();
       console.error("MailerLite error:", mailerliteResponse.status, errorBody);
@@ -63,11 +91,8 @@ async function handleContact(request, env) {
     }
   }
   if (env.CONTACT_WEBHOOK_URL) {
-    await fetch(env.CONTACT_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(normalized)
-    });
+    console.log("[contact] forwarding payload to webhook");
+    await forwardToWebhook(env.CONTACT_WEBHOOK_URL, normalized);
   } else if (!env.MAILERLITE_API_TOKEN) {
     console.log("No MailerLite token or webhook configured. Payload:", normalized);
   }

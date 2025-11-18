@@ -1,3 +1,3 @@
 MAILERLITE_API_TOKEN=ml_xxxxxxxxxxxxxxxxx
-MAILERLITE_GROUP_ID=optional_group_id
-CONTACT_WEBHOOK_URL=https://example.com/webhook  # optional
+MAILERLITE_GROUP_ID=171399940431414690
+CONTACT_WEBHOOK_URL=https://hooks.slack.com/services/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
