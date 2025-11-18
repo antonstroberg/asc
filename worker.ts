@@ -5,6 +5,32 @@ type Env = {
   MAILERLITE_GROUP_ID?: string;
 };
 
+async function forwardToWebhook(url: string, payload: Record<string, unknown>) {
+  const isSlack = url.includes("hooks.slack.com");
+  if (isSlack) {
+    const text = [
+      `*New message from ${payload.name ?? "Unknown"}*`,
+      payload.email ? `Email: ${payload.email}` : "",
+      payload.company ? `Company: ${payload.company}` : "",
+      payload.message ? `Message:\n>${String(payload.message).replace(/\n/g, "\n>")}` : "",
+    ]
+      .filter(Boolean)
+      .join("\n");
+
+    return fetch(url, {
+      method: "POST",
+      headers: { "content-type": "application/json" },
+      body: JSON.stringify({ text }),
+    });
+  }
+
+  return fetch(url, {
+    method: "POST",
+    headers: { "content-type": "application/json" },
+    body: JSON.stringify(payload),
+  });
+}
+
 async function handleContact(request: Request, env: Env) {
   if (!request.headers.get("content-type")?.includes("application/json")) {
     return new Response(JSON.stringify({ error: "Expected JSON body" }), {
@@ -80,11 +106,7 @@ async function handleContact(request: Request, env: Env) {
 
   if (env.CONTACT_WEBHOOK_URL) {
     console.log("[contact] forwarding payload to webhook");
-    await fetch(env.CONTACT_WEBHOOK_URL, {
-      method: "POST",
-      headers: { "content-type": "application/json" },
-      body: JSON.stringify(normalized),
-    });
+    await forwardToWebhook(env.CONTACT_WEBHOOK_URL, normalized);
   } else if (!env.MAILERLITE_API_TOKEN) {
     console.log("No MailerLite token or webhook configured. Payload:", normalized);
   }
