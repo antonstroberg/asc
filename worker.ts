@@ -125,6 +125,12 @@ export default {
       return handleContact(request, env);
     }
 
-    return env.ASSETS.fetch(request);
+    const assetResponse = await env.ASSETS.fetch(request);
+    if (assetResponse.status === 404 && request.method === "GET") {
+      // Serve the SPA entry for client-side routes
+      return env.ASSETS.fetch(new Request(new URL("/", request.url)));
+    }
+
+    return assetResponse;
   },
 };

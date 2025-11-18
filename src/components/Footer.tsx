@@ -6,7 +6,9 @@ const Footer = () => {
       <div className="max-w-7xl mx-auto px-6 py-12">
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
           <div>
-            <h3 className="font-semibold text-foreground mb-4">Stroberg Consulting AB</h3>
+            <h3 className="font-semibold text-foreground mb-4">ASC</h3>
+            <p className="text-sm text-muted-foreground">Stroberg Consulting AB</p>
+            <p className="text-sm text-muted-foreground mb-4">Org: 559551-3705</p>
             <p className="text-sm text-muted-foreground">
               Expert consulting in IT, AI, and product development for modern tech companies.
             </p>
@@ -42,11 +44,16 @@ const Footer = () => {
                 href="https://www.linkedin.com/in/andreasstroberg/"
                 target="_blank"
                 rel="noreferrer"
-                className="flex items-center gap-2 text-foreground hover:text-accent transition-colors"
-              >
+                className="flex items-center gap-2 text-foreground hover:text-accent transition-colors">
                 <img src="/linkedin.svg" alt="" className="h-4 w-4" aria-hidden="true" />
                 <span>LinkedIn</span>
               </a>
+              <NavLink
+                to="/contact"
+                className="flex items-center gap-2 text-foreground hover:text-accent transition-colors" >
+                <img src="/mail-icon.svg" alt="contact anton stroberg" className="h-4 w-4" aria-hidden="true" />
+                <span>Email</span>
+              </NavLink>
             </div>
           </div>
         </div>
