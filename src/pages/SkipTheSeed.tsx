@@ -39,7 +39,7 @@ const SkipTheSeed = () => {
         </div>
         <div className="relative z-10 max-w-3xl mx-auto px-6 text-center space-y-4">
 
-          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance text-white">Skip → The → Seed</h1>
+          <h1 className="text-5xl md:text-7xl font-bold mb-6 text-balance text-white">Skip The Seed</h1>
           <p className="text-xl text-white/80">
             Build the product first. Raise money later. Or not at all.
           </p>

@@ -20,7 +20,7 @@ const Header = () => {
 
   const isSkipPage = location.pathname === "/skip-the-seed";
   const canBeTransparent = ["/", "/skip-the-seed"].includes(location.pathname);
-  const showTransparentHeader = canBeTransparent && !isScrolled;
+  const showTransparentHeader = canBeTransparent && !isScrolled && !isMobileMenuOpen;
   const useLightNav = isSkipPage && showTransparentHeader;
   const navLinkBaseClass = useLightNav
     ? "text-sm text-white/80 hover:text-white transition-colors"
@@ -43,12 +43,13 @@ const Header = () => {
   const scrolledClass = isSkipPage
     ? "bg-white/60 backdrop-blur-md shadow-sm"
     : "bg-background/80 backdrop-blur-md shadow-sm";
+  const headerBackgroundClass = showTransparentHeader
+    ? "bg-transparent"
+    : scrolledClass;
 
   return (
     <header
-      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        showTransparentHeader ? "bg-transparent" : scrolledClass
-      }`}
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${headerBackgroundClass}`}
     >
       <div className="max-w-7xl mx-auto px-6">
       <div className="flex items-center justify-between h-20">

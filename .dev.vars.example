@@ -1,0 +1,3 @@
+MAILERLITE_API_TOKEN=ml_xxxxxxxxxxxxxxxxx
+MAILERLITE_GROUP_ID=optional_group_id
+CONTACT_WEBHOOK_URL=https://example.com/webhook  # optional
