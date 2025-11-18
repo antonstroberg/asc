@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
 import { NavLink } from "@/components/NavLink";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight, Code2, Brain, Lightbulb, Rocket } from "lucide-react";
 
 const Home = () => {
@@ -29,6 +30,14 @@ const Home = () => {
 
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Stroberg Consulting AB | Scandinavian Software & AI Consulting</title>
+        <meta
+          name="description"
+          content="Stroberg Consulting in Stockholm delivers senior software architecture, AI product development, and CTO leadership to scale ideas into finished products."
+        />
+        <link rel="canonical" href="https://strobergconsulting.se/" />
+      </Helmet>
       {/* Hero Section */}
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="hero-ambient">

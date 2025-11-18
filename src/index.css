@@ -194,4 +194,61 @@ All colors MUST be HSL.
     background: linear-gradient(135deg, rgba(11, 15, 25, 0.35), rgba(14, 3, 25, 0.35));
     opacity: 0.35;
   }
+
+  .contact-card {
+    position: relative;
+    transform-style: preserve-3d;
+    perspective: 1600px;
+    transition: transform 0.7s cubic-bezier(0.4, 0, 0.2, 1), box-shadow 0.6s;
+  }
+
+  .contact-card--success {
+    animation: contact-fold 0.85s ease forwards;
+    background: radial-gradient(circle at 20% 20%, rgba(84, 97, 255, 0.4), transparent 60%),
+      radial-gradient(circle at 80% 80%, rgba(0, 214, 170, 0.4), transparent 50%),
+      linear-gradient(135deg, #14161f, #0b1120);
+    box-shadow: 0 25px 65px rgba(10, 20, 50, 0.45);
+  }
+
+  .contact-card--success::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: conic-gradient(from 45deg, rgba(255, 255, 255, 0.15), transparent 40%, rgba(255, 255, 255, 0.1), transparent 80%);
+    mix-blend-mode: screen;
+    animation: contact-glimmer 3s linear infinite;
+    pointer-events: none;
+  }
+
+  .contact-thankyou {
+    min-height: 420px;
+  }
+
+  @keyframes contact-fold {
+    0% {
+      transform: rotateY(0deg) scale(1);
+      opacity: 1;
+    }
+    45% {
+      transform: rotateY(90deg) scale(0.92);
+      opacity: 0.7;
+    }
+    55% {
+      transform: rotateY(90deg) scale(0.92);
+      opacity: 0.7;
+    }
+    100% {
+      transform: rotateY(0deg) scale(1);
+      opacity: 1;
+    }
+  }
+
+  @keyframes contact-glimmer {
+    0% {
+      transform: rotate(0deg);
+    }
+    100% {
+      transform: rotate(360deg);
+    }
+  }
 }

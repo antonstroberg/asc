@@ -1,6 +1,7 @@
 import { Card, CardContent } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import { Helmet } from "react-helmet-async";
 import { ArrowRight } from "lucide-react";
 
 const productShowcase = [
@@ -33,6 +34,23 @@ const productShowcase = [
 const SkipTheSeed = () => {
   return (
     <div className="min-h-screen">
+      <Helmet>
+        <title>Skip the Seed | Build Products Before Fundraising</title>
+        <meta
+          name="description"
+          content="Skip pitch decks. Stroberg Consulting builds full products from idea to launch before raising capital. Learn how our contrarian process works."
+        />
+        <link rel="canonical" href="https://strobergconsulting.se/skip-the-seed" />
+        <meta property="og:title" content="Skip the Seed | Stroberg Consulting AB" />
+        <meta
+          property="og:description"
+          content="We build complete products before fundraising—idea to launch with the same team that ships our internal ventures."
+        />
+        <meta property="og:image" content="https://strobergconsulting.se/og-seed.png" />
+        <meta property="og:url" content="https://strobergconsulting.se/skip-the-seed" />
+        <meta name="twitter:card" content="summary_large_image" />
+        <meta name="twitter:image" content="https://strobergconsulting.se/og-seed.png" />
+      </Helmet>
       <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
         <div className="hero-ambient hero-ambient--rainbow">
           <div className="hero-ambient-overlay hero-ambient-overlay--rainbow" />

@@ -1,11 +1,11 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { toast } from "sonner";
-import { Mail, MapPin, Calendar } from "lucide-react";
+import { Mail, MapPin, Calendar, CheckCircle2 } from "lucide-react";
 
 const Contact = () => {
   const [formData, setFormData] = useState({
@@ -15,6 +15,16 @@ const Contact = () => {
     message: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [showThankYou, setShowThankYou] = useState(false);
+  const thankYouTimer = useRef<NodeJS.Timeout | null>(null);
+
+  useEffect(() => {
+    return () => {
+      if (thankYouTimer.current) {
+        clearTimeout(thankYouTimer.current);
+      }
+    };
+  }, []);
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,6 +45,11 @@ const Contact = () => {
 
       toast.success("Message sent! I'll get back to you within 24 hours.");
       setFormData({ name: "", email: "", company: "", message: "" });
+      setShowThankYou(true);
+      if (thankYouTimer.current) {
+        clearTimeout(thankYouTimer.current);
+      }
+      thankYouTimer.current = setTimeout(() => setShowThankYou(false), 3600);
     } catch (error) {
       console.error(error);
       toast.error(error instanceof Error ? error.message : "Something went wrong. Please try again.");
@@ -70,70 +85,85 @@ const Contact = () => {
       <section className="section-container bg-muted/30">
         <div className="grid md:grid-cols-2 gap-12 max-w-5xl mx-auto">
           {/* Form */}
-          <Card className="border-border">
-            <CardHeader>
-              <CardTitle>Send a Message</CardTitle>
-            </CardHeader>
-            <CardContent>
-              <form onSubmit={handleSubmit} className="space-y-6">
+          <Card className={`border-border overflow-hidden contact-card ${showThankYou ? "contact-card--success" : ""}`}>
+            {showThankYou ? (
+              <div className="contact-thankyou flex flex-col items-center justify-center gap-4 p-10 text-center text-white">
+                <CheckCircle2 className="w-14 h-14 text-white" />
                 <div>
-                  <Label htmlFor="name">Name *</Label>
-                  <Input
-                    id="name"
-                    name="name"
-                    value={formData.name}
-                    onChange={handleChange}
-                    required
-                    placeholder="Your name"
-                    className="mt-2"
-                  />
+                  <p className="text-sm uppercase tracking-[0.3em]">Got it</p>
+                  <p className="text-3xl font-semibold mt-1">Thank you</p>
                 </div>
+                <p className="text-white/80 max-w-md">
+                  I just received your message. Expect a personal reply in your inbox within 24 hours.
+                </p>
+              </div>
+            ) : (
+              <>
+                <CardHeader>
+                  <CardTitle>Send a Message</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <form onSubmit={handleSubmit} className="space-y-6">
+                    <div>
+                      <Label htmlFor="name">Name *</Label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleChange}
+                        required
+                        placeholder="Your name"
+                        className="mt-2"
+                      />
+                    </div>
 
-                <div>
-                  <Label htmlFor="email">Email *</Label>
-                  <Input
-                    id="email"
-                    name="email"
-                    type="email"
-                    value={formData.email}
-                    onChange={handleChange}
-                    required
-                    placeholder="your.email@company.com"
-                    className="mt-2"
-                  />
-                </div>
+                    <div>
+                      <Label htmlFor="email">Email *</Label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleChange}
+                        required
+                        placeholder="your.email@company.com"
+                        className="mt-2"
+                      />
+                    </div>
 
-                <div>
-                  <Label htmlFor="company">Company</Label>
-                  <Input
-                    id="company"
-                    name="company"
-                    value={formData.company}
-                    onChange={handleChange}
-                    placeholder="Your company (optional)"
-                    className="mt-2"
-                  />
-                </div>
+                    <div>
+                      <Label htmlFor="company">Company</Label>
+                      <Input
+                        id="company"
+                        name="company"
+                        value={formData.company}
+                        onChange={handleChange}
+                        placeholder="Your company (optional)"
+                        className="mt-2"
+                      />
+                    </div>
 
-                <div>
-                  <Label htmlFor="message">Message *</Label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleChange}
-                    required
-                    placeholder="Tell me about your project or challenge..."
-                    rows={6}
-                    className="mt-2"
-                  />
-                </div>
+                    <div>
+                      <Label htmlFor="message">Message *</Label>
+                      <Textarea
+                        id="message"
+                        name="message"
+                        value={formData.message}
+                        onChange={handleChange}
+                        required
+                        placeholder="Tell me about your project or challenge..."
+                        rows={6}
+                        className="mt-2"
+                      />
+                    </div>
 
-                <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
-                  {isSubmitting ? "Sending..." : "Send Message"}
-                </Button>
-              </form>
-            </CardContent>
+                    <Button type="submit" size="lg" className="w-full" disabled={isSubmitting}>
+                      {isSubmitting ? "Sending..." : "Send Message"}
+                    </Button>
+                  </form>
+                </CardContent>
+              </>
+            )}
           </Card>
 
           {/* Contact Info */}

@@ -10,7 +10,7 @@ const Footer = () => {
             <p className="text-sm text-muted-foreground">Stroberg Consulting AB</p>
             <p className="text-sm text-muted-foreground mb-4">Org: 559551-3705</p>
             <p className="text-sm text-muted-foreground">
-              Expert consulting in IT, AI, and product development for modern tech companies.
+              Consulting in IT, AI, and product development for modern tech companies.
             </p>
           </div>
           

@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from "@/components/ui/card";
 import { Button } from "@/components/ui/button";
 import { NavLink } from "@/components/NavLink";
+import { Helmet } from "react-helmet-async";
 import { 
   Code2, 
   Brain, 
@@ -89,6 +90,14 @@ const Services = () => {
 
   return (
     <div className="min-h-screen pt-20">
+      <Helmet>
+        <title>Software & AI Consulting Services | Stroberg Consulting</title>
+        <meta
+          name="description"
+          content="Software architecture, AI product development, UX research, and CTO advisory services from Stroberg Consulting AB in Stockholm."
+        />
+        <link rel="canonical" href="https://strobergconsulting.se/services" />
+      </Helmet>
       {/* Hero */}
       <section className="section-container">
         <div className="max-w-3xl">
